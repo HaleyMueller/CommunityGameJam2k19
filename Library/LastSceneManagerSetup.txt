@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/NPC Screen.unity
+- path: Assets/Scenes/Levels/Level01/Level01.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
