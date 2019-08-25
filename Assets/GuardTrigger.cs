@@ -15,8 +15,8 @@ public class GuardTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             spottedPlayer = true;
-            guard.GetComponent<WalkRoutine>().doSpottedObject = true;
-            guard.GetComponent<WalkRoutine>().spottedObject = other.gameObject;
+            guard.GetComponent<Guard>().doSpottedObject = true;
+            guard.GetComponent<Guard>().spottedObject = other.gameObject;
         }
     }
 
@@ -25,8 +25,8 @@ public class GuardTrigger : MonoBehaviour
         if (other.tag == "Player")
         {
             spottedPlayer = false;
-            guard.GetComponent<WalkRoutine>().doSpottedObject = false;
-            guard.GetComponent<WalkRoutine>().spottedObject = null;
+            guard.GetComponent<Guard>().doSpottedObject = false;
+            guard.GetComponent<Guard>().spottedObject = null;
         }
     }
 }

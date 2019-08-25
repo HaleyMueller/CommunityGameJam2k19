@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 7092097046140814154}
   - component: {fileID: 7092097046140814158}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: GuardObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,11 +319,11 @@ MonoBehaviour:
     StandTime: 0
     Speed: 7
     RotateSpeed: 3
+  speed: 4
+  pickRandomPoint: 1
+  noticeTimer: 4
   doSpottedObject: 0
   spottedObject: {fileID: 0}
-  speed: 4
-  noticeTimer: 4
-  pickRandomPoint: 1
 --- !u!1 &7092097046342303174
 GameObject:
   m_ObjectHideFlags: 0

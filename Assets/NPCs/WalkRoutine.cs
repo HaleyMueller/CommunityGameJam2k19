@@ -10,18 +10,11 @@ public class WalkRoutine : MonoBehaviour
     internal int currentWalkPointIndex = 0;
 
     private bool doPatrol = true;
-    public bool doSpottedObject = false;
-    public GameObject spottedObject = null;
 
     /// <summary>
     /// Walk speed
     /// </summary>
     public float speed = 4f;
-
-    /// <summary>
-    /// Timer for how long player has to stay in view to be noticed
-    /// </summary>
-    public float noticeTimer = 4f;
 
     public bool pickRandomPoint = false;
 
@@ -35,67 +28,15 @@ public class WalkRoutine : MonoBehaviour
     /// </summary>
     private bool isFrozen = false;
 
-    /// <summary>
-    /// Courtine that looks at the player and does a timer
-    /// </summary>
-    IEnumerator lookAtPlayer = null;
+
 
     internal void PatrolLogic()
     {
-        if (currentlyLookingAtPlayer && spottedObject == null && playerLeftView == false) //Player left view before timer ended
+        if (doPatrol)
         {
-            playerLeftView = true;
-
-            if (lookAtPlayer != null)
-                StopCoroutine(lookAtPlayer);
-        }
-
-        if (doSpottedObject)
-        {
-            if (spottedObject != null)
-            {
-                playerLeftView = false;
-
-                var vec = new Vector3(spottedObject.transform.position.x, this.transform.position.y, spottedObject.transform.position.z);
-                transform.LookAt(vec);
-
-                if (currentlyLookingAtPlayer == false)
-                {
-                    lookAtPlayer = NoticeTimer(); //Look at player and start timer
-                    StartCoroutine(lookAtPlayer);
-                }
-            }
-        }
-        else
-        {
-            if (doPatrol)
-            {
-                WalkToNextPoint();
-            }
+            WalkToNextPoint();
         }
     }
-
-    #region PlayerLookAt
-
-    private bool currentlyLookingAtPlayer = false;
-    private bool playerLeftView = false;
-
-    IEnumerator NoticeTimer()
-    {
-        currentlyLookingAtPlayer = true;
-        yield return new WaitForSeconds(noticeTimer);
-        if (spottedObject != null)
-        {
-            Debug.Log("Successfully found player");
-        }
-        else
-        {
-            Debug.Log("It must have been the wind");
-        }
-        currentlyLookingAtPlayer = false;
-    }
-
-    #endregion
 
     #region Patrol
 
