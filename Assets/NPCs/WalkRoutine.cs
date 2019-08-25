@@ -28,6 +28,8 @@ public class WalkRoutine : MonoBehaviour
     /// </summary>
     private bool isFrozen = false;
 
+
+
     internal void PatrolLogic()
     {
         if (doPatrol)
@@ -35,6 +37,8 @@ public class WalkRoutine : MonoBehaviour
             WalkToNextPoint();
         }
     }
+
+    #region Patrol
 
     void WalkToNextPoint()
     {
@@ -81,15 +85,13 @@ public class WalkRoutine : MonoBehaviour
             else
             {
                 var rFloat = UnityEngine.Random.Range(0, 2);
-                Debug.Log(rFloat);
+
                 if (rFloat < 1f)
                 {
-                    Debug.Log(rFloat + " 1");
                     return currIndex - 1;
                 }
                 else
                 {
-                    Debug.Log(rFloat + " 2");
                     return currIndex + 1;
                 }
             }
@@ -176,6 +178,8 @@ public class WalkRoutine : MonoBehaviour
 
         return walkPoints[currentWalkPointIndex];
     }
+
+    #endregion
 }
 
 [Serializable]
