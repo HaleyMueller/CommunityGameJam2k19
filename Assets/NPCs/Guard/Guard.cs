@@ -20,6 +20,8 @@ public class Guard : WalkRoutine
     [HideInInspector]
     public GameObject spottedObject = null;
 
+    public GameObject exclamation;
+
     void Update()
     {
         if (currentlyLookingAtPlayer && spottedObject == null && playerLeftView == false) //Player left view before timer ended
@@ -66,6 +68,8 @@ public class Guard : WalkRoutine
         if (spottedObject != null)
         {
             Debug.Log("Successfully found player");
+            exclamation.GetComponent<SpriteRenderer>().enabled = true;
+            exclamation.GetComponent<AlwaysLookAtCamera>().enabled = true;
         }
         else
         {
