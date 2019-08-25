@@ -1,80 +1,65 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using System.Linq;
 
 public class Inventory : MonoBehaviour
 {
-    private List<GameObject> objects = new List<GameObject>();
+    private List<InventoryObject> objects = new List<InventoryObject>();
 
     public GameObject inventoryItemPrefab;
 
     public GameObject InventoryParent;
 
+    public bool PlayerHasItem(InventoryObject obj)
+    {
+        var item = objects.Where(x => x == obj).FirstOrDefault();
+
+        if (item != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public void AddObjectToInventory(InventoryObject inventoryObject)
     {
         var main = GameObject.Instantiate(inventoryItemPrefab, InventoryParent.transform);
         main.transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = inventoryObject.Name;
-        main.GetComponent<RectTransform>().position = new Vector3(main.GetComponent<RectTransform>().position.x, main.GetComponent<RectTransform>().position.y, main.GetComponent<RectTransform>().position.z);
 
-        objects.Add(main);
+        if (inventoryObject.image != null)
+            main.transform.Find("Image").GetComponent<Image>().image = inventoryObject.image;
 
-        var i = 1;
+        main.GetComponent<RectTransform>().localPosition = new Vector3(main.GetComponent<RectTransform>().localPosition.x, main.GetComponent<RectTransform>().localPosition.y, main.GetComponent<RectTransform>().localPosition.z);
+
+        Vector3 defaultPostition = new Vector3(main.GetComponent<RectTransform>().localPosition.x, main.GetComponent<RectTransform>().localPosition.y, main.GetComponent<RectTransform>().localPosition.z);
+
+        inventoryObject.obj = main;
+
+        objects.Add(inventoryObject);
+
+        UpdateUI(defaultPostition);
+    }
+
+    private void UpdateUI(Vector3 defaultPostition)
+    {
+        var i = 0;
 
         foreach (var obj in objects)
         {
-            obj.GetComponent<RectTransform>().localPosition = new Vector3(0, obj.GetComponent<RectTransform>().localPosition.y, obj.GetComponent<RectTransform>().localPosition.z);
+            obj.obj.GetComponent<RectTransform>().localPosition = new Vector3(defaultPostition.x - (150 * i), defaultPostition.y, defaultPostition.z);
 
-            if (objects.Count % 2 == 0) //Even amount
-            {
-                if (i % 2 == 0)
-                {
-                    obj.GetComponent<RectTransform>().localPosition = new Vector3(obj.GetComponent<RectTransform>().localPosition.x + (110 * i) - (55 * i), obj.GetComponent<RectTransform>().localPosition.y, obj.GetComponent<RectTransform>().localPosition.z);
-                }
-                else
-                {
-                    obj.GetComponent<RectTransform>().localPosition = new Vector3(obj.GetComponent<RectTransform>().localPosition.x + ((110 * i) - (55 * i)) * -1, obj.GetComponent<RectTransform>().localPosition.y, obj.GetComponent<RectTransform>().localPosition.z);
-                }
-            }
-            else
-            {
-                if (i == Mathf.Ceil(i / objects.Count))
-                {
-                    obj.GetComponent<RectTransform>().localPosition = new Vector3(0, obj.GetComponent<RectTransform>().localPosition.y, obj.GetComponent<RectTransform>().localPosition.z);
-                }
-                else
-                {
-                    if (i % 2 == 0)
-                    {
-                        obj.GetComponent<RectTransform>().localPosition = new Vector3(obj.GetComponent<RectTransform>().localPosition.x + (110 * i) - (55 * i), obj.GetComponent<RectTransform>().localPosition.y, obj.GetComponent<RectTransform>().localPosition.z);
-                    }
-                    else
-                    {
-                        obj.GetComponent<RectTransform>().localPosition = new Vector3(obj.GetComponent<RectTransform>().localPosition.x + ((110 * i) - (55 * i)) * -1, obj.GetComponent<RectTransform>().localPosition.y, obj.GetComponent<RectTransform>().localPosition.z);
-                    }
-                }
-            }
             i++;
         }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            var i = new InventoryObject();
-            i.Name = "Ree";
-            AddObjectToInventory(i);
-        }
-    }
-
-    private void UpdateUI()
-    {
-
     }
 }
 
 public class InventoryObject
 {
     public string Name;
-    public Sprite image;
+    public Texture image;
+
+    public GameObject obj;
 }
