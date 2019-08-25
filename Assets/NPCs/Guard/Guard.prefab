@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7092097045778494177}
   - component: {fileID: 7092097045778494190}
   - component: {fileID: 7092097045778494191}
+  - component: {fileID: 5790110367547551899}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 48ee6a9870f65c2408f58310e5895627, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,6 +93,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5790110367547551899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7092097045778494188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a752fe9dc4c8744c97fc80b436e8a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  guard: {fileID: 7092097046140814155}
 --- !u!1 &7092097045798330836
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +319,10 @@ MonoBehaviour:
     StandTime: 0
     Speed: 7
     RotateSpeed: 3
+  doSpottedObject: 0
+  spottedObject: {fileID: 0}
   speed: 4
+  noticeTimer: 4
   pickRandomPoint: 1
 --- !u!1 &7092097046342303174
 GameObject:
@@ -501,7 +518,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7092097046359223270}
   m_Layer: 0
-  m_Name: Guard 1
+  m_Name: Guard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
