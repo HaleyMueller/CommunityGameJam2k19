@@ -16,10 +16,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   colorMode:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   color:
     m_OverrideState: 1
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    m_Value: {r: 1, g: 1, b: 1, a: 1}
     hdr: 1
     showAlpha: 0
     showEyeDropper: 1
@@ -63,7 +63,7 @@ MonoBehaviour:
     m_Value: 10
   anisotropy:
     m_OverrideState: 1
-    m_Value: 0.5
+    m_Value: 0.32
     min: -1
     max: 1
   globalLightProbeDimmer:
@@ -248,12 +248,12 @@ MonoBehaviour:
   m_AdvancedMode: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.37
     min: 0
     max: 4
   stepCount:
     m_OverrideState: 1
-    m_Value: 18
+    m_Value: 19
     min: 2
     max: 32
   radius:
