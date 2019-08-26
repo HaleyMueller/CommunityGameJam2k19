@@ -49,6 +49,11 @@ public class WalkRoutine : MonoBehaviour
 
             Vector3 goToPos = new Vector3(walkPoints[currentWalkPointIndex].point.transform.position.x, this.transform.position.y, walkPoints[currentWalkPointIndex].point.transform.position.z);
 
+            if (walkPoints[currentWalkPointIndex].UseY)
+            {
+                goToPos = new Vector3(walkPoints[currentWalkPointIndex].point.transform.position.x, walkPoints[currentWalkPointIndex].point.transform.position.y, walkPoints[currentWalkPointIndex].point.transform.position.z);
+            }
+
             transform.LookAt(goToPos, Vector3.up);
             transform.position = Vector3.MoveTowards(transform.position, goToPos, step);
 
@@ -102,7 +107,7 @@ public class WalkRoutine : MonoBehaviour
     {
         yield return new WaitForSeconds(sec);
 
-        if (point.RotateSpeed > 0)
+        if (point.Rotate)
         {
             StartCoroutine(Rotate(walkPoints[currentWalkPointIndex]));
         }
@@ -190,7 +195,7 @@ public class WalkPoint
     public float StandTime = 0f;
     public float Speed = 3f;
     public float RotateSpeed = 3f;
+    public bool UseY = false;
 
-    //Maybe?
-    //public bool LookLeftRight = true;
+    public bool Rotate = true;
 }
