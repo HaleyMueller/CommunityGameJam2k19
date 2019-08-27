@@ -31,6 +31,9 @@ ehthumbs.db
 [Bb]uild
 sysinfo.txt
 *.stackdump
+Library/
+.vs/
+.Logs/
 Temp/UnityLockfile
 Library/EditorInstance.json
 Library/Collab/CollabSnapshot_7ec51f88-5106-44cc-bf92-03116347129a.txt
@@ -288,3 +291,4 @@ Temp/UnityTempFile-fa325047fc19f494891f07a3a483d1cd
 Temp/UnityTempFile-fb9401fa62bae13428e35641b8de7ce0
 Temp/UnityTempFile-fc1bb973506d1d240a258c1a33f71475
 Temp/UnityTempFile-fccae7b7c798f5147a9fb98a105ffe98
+Library/metadata/01/01ab4daa0c099e24e90bbb8623a4198b.info
