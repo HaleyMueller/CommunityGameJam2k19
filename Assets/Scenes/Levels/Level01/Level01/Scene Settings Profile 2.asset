@@ -47,7 +47,7 @@ MonoBehaviour:
     min: 0
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 1, g: 0.372, b: 0, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
@@ -122,28 +122,28 @@ MonoBehaviour:
     m_Value: 1
   sunSize:
     m_OverrideState: 1
-    m_Value: 0.04
+    m_Value: 0.064
     min: 0
     max: 1
   sunSizeConvergence:
     m_OverrideState: 1
-    m_Value: 5
+    m_Value: 4.73
     min: 1
     max: 10
   atmosphereThickness:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 3.53
     min: 0
     max: 5
   skyTint:
     m_OverrideState: 1
-    m_Value: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    m_Value: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
   groundColor:
     m_OverrideState: 1
-    m_Value: {r: 0.369, g: 0.349, b: 0.341, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
@@ -189,10 +189,10 @@ MonoBehaviour:
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 1.2
+    m_Value: 1.3
   contrast:
     m_OverrideState: 1
-    m_Value: 10
+    m_Value: 20
     min: -100
     max: 100
   colorFilter:
@@ -208,7 +208,7 @@ MonoBehaviour:
     max: 180
   saturation:
     m_OverrideState: 1
-    m_Value: 20
+    m_Value: 25
     min: -100
     max: 100
 --- !u!114 &11400000
@@ -229,72 +229,8 @@ MonoBehaviour:
   - {fileID: -4936447589234521457}
   - {fileID: -5799709119008096269}
   - {fileID: -4563002783895292393}
-  - {fileID: 2038532613696280854}
   - {fileID: 5407572944978767551}
   - {fileID: -934588908745071055}
---- !u!114 &2038532613696280854
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9008a067f4d626c4d8bc4bc48f04bb89, type: 3}
-  m_Name: AmbientOcclusion
-  m_EditorClassIdentifier: 
-  active: 1
-  m_AdvancedMode: 0
-  intensity:
-    m_OverrideState: 1
-    m_Value: 0.37
-    min: 0
-    max: 4
-  stepCount:
-    m_OverrideState: 1
-    m_Value: 19
-    min: 2
-    max: 32
-  radius:
-    m_OverrideState: 1
-    m_Value: 2.33
-    min: 0.25
-    max: 5
-  fullResolution:
-    m_OverrideState: 1
-    m_Value: 1
-  maximumRadiusInPixels:
-    m_OverrideState: 1
-    m_Value: 40
-    min: 16
-    max: 256
-  directLightingStrength:
-    m_OverrideState: 1
-    m_Value: 1
-    min: 0
-    max: 1
-  enableRaytracing:
-    m_OverrideState: 1
-    m_Value: 0
-  rayLength:
-    m_OverrideState: 1
-    m_Value: 0.5
-    min: 0
-    max: 50
-  enableFilter:
-    m_OverrideState: 1
-    m_Value: 0
-  numSamples:
-    m_OverrideState: 1
-    m_Value: 4
-    min: 1
-    max: 64
-  filterRadius:
-    m_OverrideState: 1
-    m_Value: 16
-    min: 1
-    max: 32
 --- !u!114 &2184734252280748648
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -378,12 +314,12 @@ MonoBehaviour:
   m_AdvancedMode: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.462
+    m_Value: 0.577
     min: 0
     max: 1
   scatter:
     m_OverrideState: 1
-    m_Value: 0.398
+    m_Value: 0.586
     min: 0
     max: 1
   tint:
