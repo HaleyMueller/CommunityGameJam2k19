@@ -228,7 +228,7 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Color_4024A9EE: {r: 2.8284268, g: 0, b: 2.4434054, a: 0}
+    - Color_4024A9EE: {r: 1.4142134, g: 0.7700429, b: 0, a: 0}
     - Color_E57C6AA3: {r: 0, g: 0.4241941, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
