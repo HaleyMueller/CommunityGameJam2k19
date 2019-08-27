@@ -34,6 +34,7 @@ sysinfo.txt
 Library/
 .vs/
 .Logs/
+.Temp/
 Temp/UnityLockfile
 Library/EditorInstance.json
 Library/Collab/CollabSnapshot_7ec51f88-5106-44cc-bf92-03116347129a.txt
