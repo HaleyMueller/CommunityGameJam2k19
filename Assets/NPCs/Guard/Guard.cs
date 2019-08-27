@@ -22,6 +22,8 @@ public class Guard : WalkRoutine
 
     public GameObject exclamation;
 
+    bool rayCastWorked = false;
+
     void Update()
     {
         if (currentlyLookingAtPlayer && spottedObject == null && playerLeftView == false) //Player left view before timer ended
@@ -35,17 +37,35 @@ public class Guard : WalkRoutine
 
         if (doSpottedObject)
         {
-            if (spottedObject != null)
+            if (spottedObject != null) //Spotted object by trigger
             {
-                playerLeftView = false;
+                float maxRange = 5;
+                RaycastHit hit;
 
-                var vec = new Vector3(spottedObject.transform.position.x, this.transform.position.y, spottedObject.transform.position.z);
-                transform.LookAt(vec);
-
-                if (currentlyLookingAtPlayer == false)
+                if (Vector3.Distance(transform.position, spottedObject.transform.position) < maxRange) //Within raycast range
                 {
-                    lookAtPlayer = NoticeTimer(); //Look at player and start timer
-                    StartCoroutine(lookAtPlayer);
+                    if (Physics.Raycast(transform.position, (spottedObject.transform.position - transform.position), out hit, maxRange)) //If hit something
+                    {
+                        if (hit.transform.gameObject == spottedObject) //If hit spotted object directly
+                        {
+                            rayCastWorked = true;
+                            playerLeftView = false;
+
+                            var vec = new Vector3(spottedObject.transform.position.x, this.transform.position.y, spottedObject.transform.position.z);
+                            transform.LookAt(vec);
+
+                            if (currentlyLookingAtPlayer == false)
+                            {
+                                lookAtPlayer = NoticeTimer(); //Look at player and start timer
+                                StartCoroutine(lookAtPlayer);
+                            }
+                        }
+                        else
+                        {
+                            doSpottedObject = false;
+                            rayCastWorked = false;
+                        }
+                    }
                 }
             }
         }
