@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Linq;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -30,7 +31,10 @@ public class Inventory : MonoBehaviour
         main.transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = inventoryObject.Name;
 
         if (inventoryObject.image != null)
-            main.transform.Find("Image").GetComponent<Image>().image = inventoryObject.image;
+        {
+            if (main.transform.Find("Image") != null)
+                main.transform.Find("Image").GetComponent<UnityEngine.UI.Image>().sprite = inventoryObject.image;
+        }
 
         main.GetComponent<RectTransform>().localPosition = new Vector3(main.GetComponent<RectTransform>().localPosition.x, main.GetComponent<RectTransform>().localPosition.y, main.GetComponent<RectTransform>().localPosition.z);
 
@@ -59,7 +63,7 @@ public class Inventory : MonoBehaviour
 public class InventoryObject
 {
     public string Name;
-    public Texture image;
+    public Sprite image;
 
     public GameObject obj;
 }
