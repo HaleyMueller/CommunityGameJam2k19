@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29b00527f85bb3346a4d2cb710971587, type: 3}
   m_Name: VolumetricFog
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   colorMode:
     m_OverrideState: 1
@@ -47,7 +47,7 @@ MonoBehaviour:
     min: 0
   albedo:
     m_OverrideState: 1
-    m_Value: {r: 1, g: 0.372, b: 0, a: 1}
+    m_Value: {r: 1, g: 0.37254903, b: 0, a: 1}
     hdr: 0
     showAlpha: 1
     showEyeDropper: 1
@@ -63,7 +63,7 @@ MonoBehaviour:
     m_Value: 10
   anisotropy:
     m_OverrideState: 1
-    m_Value: -0.895
+    m_Value: 0.27
     min: -1
     max: 1
   globalLightProbeDimmer:
@@ -98,7 +98,7 @@ MonoBehaviour:
     m_Value: 0
   exposure:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0.57
   multiplier:
     m_OverrideState: 1
     m_Value: 1
@@ -122,12 +122,12 @@ MonoBehaviour:
     m_Value: 1
   sunSize:
     m_OverrideState: 1
-    m_Value: 0.064
+    m_Value: 0.069
     min: 0
     max: 1
   sunSizeConvergence:
     m_OverrideState: 1
-    m_Value: 4.73
+    m_Value: 7.8
     min: 1
     max: 10
   atmosphereThickness:
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4910d90e50201484ba448b791a192696, type: 3}
   m_Name: VolumetricLightingController
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   m_AdvancedMode: 0
   depthExtent:
     m_OverrideState: 1
@@ -314,12 +314,12 @@ MonoBehaviour:
   m_AdvancedMode: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.577
+    m_Value: 0.508
     min: 0
     max: 1
   scatter:
     m_OverrideState: 1
-    m_Value: 0.586
+    m_Value: 0.448
     min: 0
     max: 1
   tint:
