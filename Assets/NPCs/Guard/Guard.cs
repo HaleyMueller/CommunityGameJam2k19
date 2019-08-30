@@ -75,6 +75,12 @@ public class Guard : WalkRoutine
         }
     }
 
+    public void GetStunned()
+    {
+        this.GetComponent<Animator>().enabled = true;
+        this.GetComponent<Guard>().enabled = false;
+    }
+
     #region PlayerLookAt
 
     private bool currentlyLookingAtPlayer = false;
