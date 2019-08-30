@@ -13,16 +13,40 @@ public class Inventory : MonoBehaviour
 
     public GameObject InventoryParent;
 
-    public bool PlayerHasItem(InventoryObject obj)
+    public bool PlayerHasItem(string objName, bool removeItem)
     {
-        var item = objects.Where(x => x == obj).FirstOrDefault();
+        var item = objects.Where(x => x.Name == objName).FirstOrDefault();
 
         if (item != null)
         {
+            if (removeItem)
+            {
+                RemoveObjectFromInventory(item);
+            }
+
             return true;
         }
 
         return false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log(PlayerHasItem("Default Text", true));
+        }
+    }
+
+    public void RemoveObjectFromInventory(InventoryObject inventoryObject)
+    {
+        var trans = objects.FirstOrDefault().obj.transform.localPosition;
+
+        Destroy(inventoryObject.obj);
+
+        objects.Remove(inventoryObject);
+
+        UpdateUI(trans);
     }
 
     public void AddObjectToInventory(InventoryObject inventoryObject)
