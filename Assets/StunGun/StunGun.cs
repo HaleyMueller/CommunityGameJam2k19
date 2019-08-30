@@ -7,14 +7,11 @@ public class StunGun : MonoBehaviour
     public Camera playercam;
 
     //can be hardcoded but put for fine tuning
-    public int range;
-    
+    public int range = 1;
 
     void Update()
     {
-
-
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             lightning.gameObject.SetActive(true);
 
