@@ -35,7 +35,15 @@ public class Guard : WalkRoutine
     public bool dropItem = false;
     public InventoryObject itemToDrop;
 
+    [HideInInspector]
     bool rayCastWorked = false;
+
+    public AudioSource vfx;
+
+    public List<AudioClip> searchingClips;
+    public List<AudioClip> lostClips;
+    public List<AudioClip> foundClips;
+    public List<AudioClip> deadClips;
 
     void Update()
     {
@@ -43,6 +51,11 @@ public class Guard : WalkRoutine
         {
             playerLeftView = true;
             currentlyLookingAtPlayer = false;
+
+            int indexp = Random.Range(0, lostClips.Count);
+            var shootClipz = lostClips[indexp];
+            vfx.clip = shootClipz;
+            vfx.Play();
 
             if (lookAtPlayer != null)
                 StopCoroutine(lookAtPlayer);
@@ -103,6 +116,7 @@ public class Guard : WalkRoutine
         }
     }
 
+    [HideInInspector]
     public bool isDead = false;
 
     public void GetStunned()
@@ -112,6 +126,11 @@ public class Guard : WalkRoutine
             isDead = true;
             this.GetComponent<Animator>().enabled = true;
             this.GetComponent<Guard>().enabled = false;
+
+            int indexp = Random.Range(0, deadClips.Count);
+            var shootClipz = deadClips[indexp];
+            vfx.clip = shootClipz;
+            vfx.Play();
 
             if (dropItem) //Drop item
             {
@@ -123,6 +142,8 @@ public class Guard : WalkRoutine
                 s.GetComponent<Item>().WorldSprite = itemToDrop.image;
             }
 
+            vfx.Stop();
+            taserSFX.loop = false;
             taserSFX.Stop();
             particleTaser.SetActive(false);
         }
@@ -138,6 +159,12 @@ public class Guard : WalkRoutine
     IEnumerator NoticeTimer()
     {
         currentlyLookingAtPlayer = true;
+
+        //int index = Random.Range(0, searchingClips.Count);
+        //var shootClip = searchingClips[index];
+        //vfx.clip = shootClip;
+        //vfx.Play();
+
         yield return new WaitForSeconds(noticeTimer);
         if (spottedObject != null)
         {
@@ -151,9 +178,16 @@ public class Guard : WalkRoutine
 
             taserSFX.Play();
             particleTaser.SetActive(true);
+
+            int indexx = Random.Range(0, foundClips.Count);
+            var shootClipp = foundClips[indexx];
+            vfx.clip = shootClipp;
+            vfx.Play();
         }
         else
         {
+
+
             Debug.Log("It must have been the wind");
             particleTaser.SetActive(false);
         }
