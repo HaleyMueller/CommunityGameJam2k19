@@ -8,6 +8,11 @@ public class StunGun : MonoBehaviour
 
     public AudioSource sfx;
 
+    public AudioSource nonLoopingSFX;
+
+    public AudioClip flashLightOn;
+    public AudioClip flashLightOff;
+
     //can be hardcoded but put for fine tuning
     public int range = 1;
 
@@ -34,10 +39,16 @@ public class StunGun : MonoBehaviour
         {
             if (flashlight.gameObject.activeSelf)
             {
+                nonLoopingSFX.clip = flashLightOff;
+                nonLoopingSFX.Play();
+
                 flashlight.gameObject.SetActive(false);
             }
             else
             {
+                nonLoopingSFX.clip = flashLightOn;
+                nonLoopingSFX.Play();
+
                 flashlight.gameObject.SetActive(true);
             }
         }
