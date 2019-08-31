@@ -30,11 +30,16 @@ public class Guard : WalkRoutine
     public GameObject exclamation;
     public GameObject particleTaser;
 
+    public GameObject itemPrefab;
+
+    public bool dropItem = false;
+    public InventoryObject itemToDrop;
+
     bool rayCastWorked = false;
 
     void Update()
     {
-        if (currentlyLookingAtPlayer && spottedObject == null && playerLeftView == false) //Player left view before timer ended
+        if (currentlyLookingAtPlayer && spottedObject == null && playerLeftView == false && isDead == false) //Player left view before timer ended
         {
             playerLeftView = true;
             currentlyLookingAtPlayer = false;
@@ -43,7 +48,7 @@ public class Guard : WalkRoutine
                 StopCoroutine(lookAtPlayer);
         }
 
-        if (doSpottedObject)
+        if (doSpottedObject && isDead == false)
         {
             if (spottedObject != null) //Spotted object by trigger
             {
@@ -85,7 +90,11 @@ public class Guard : WalkRoutine
         }
         else
         {
-            PatrolLogic(seenPlayer);
+            if (isDead == false)
+            {
+                PatrolLogic(seenPlayer);
+            }
+
             particleTaser.SetActive(false);
 
             taserSFX.Stop();
@@ -94,13 +103,29 @@ public class Guard : WalkRoutine
         }
     }
 
+    public bool isDead = false;
+
     public void GetStunned()
     {
-        this.GetComponent<Animator>().enabled = true;
-        this.GetComponent<Guard>().enabled = false;
+        if (isDead == false)
+        {
+            isDead = true;
+            this.GetComponent<Animator>().enabled = true;
+            this.GetComponent<Guard>().enabled = false;
 
-        taserSFX.Stop();
-        particleTaser.SetActive(false);
+            if (dropItem) //Drop item
+            {
+                var s = Instantiate(itemPrefab, this.transform.position, this.transform.rotation);
+
+                s.transform.position = new Vector3(s.transform.position.x, s.transform.position.y + .75f, s.transform.position.z);
+
+                s.GetComponent<Item>().Name = itemToDrop.Name;
+                s.GetComponent<Item>().WorldSprite = itemToDrop.image;
+            }
+
+            taserSFX.Stop();
+            particleTaser.SetActive(false);
+        }
     }
 
     #region PlayerLookAt

@@ -233,6 +233,9 @@ MonoBehaviour:
   taserSFX: {fileID: 4356796924523898916}
   exclamation: {fileID: 8752856159249325094}
   particleTaser: {fileID: 6140642279981524283}
+  itemPrefab: {fileID: 5273153247145266698, guid: e9122fc10b30fc6429a93149b67177eb,
+    type: 3}
+  dropItem: 0
 --- !u!1 &7092097045778494188
 GameObject:
   m_ObjectHideFlags: 0

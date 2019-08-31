@@ -435,10 +435,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9510dd9745f1c48830d2e827e74620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryItemPrefab: {fileID: 6531904076456736231, guid: 6eb372d866f122c4da38a4f441220008,
+  inventoryItemPrefab: {fileID: 2592186456524912718, guid: 123c0ebeb6f99474e9210825c0f4c1c6,
     type: 3}
-  InventoryParent: {fileID: 8957026272046774684, guid: cf562a5a6f1497443adc96ba9e62d46f,
-    type: 3}
+  panel: {fileID: 0}
 --- !u!114 &5419850085561990415
 MonoBehaviour:
   m_ObjectHideFlags: 0

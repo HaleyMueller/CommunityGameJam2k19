@@ -12,7 +12,6 @@ public class CameraHandler : MonoBehaviour
     List<Picture> pictures = new List<Picture>();
 
     public Renderer boss;
-    public RawImage test;
 
     public Camera c;
 
