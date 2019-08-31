@@ -29,22 +29,22 @@ public class WalkRoutine : MonoBehaviour
     public bool isFrozen = false;
 
 
-    internal void PatrolLogic()
+    internal void PatrolLogic(bool seenPlayer)
     {
         if (doPatrol)
         {
-            WalkToNextPoint();
+            WalkToNextPoint(seenPlayer);
         }
     }
 
     #region Patrol
 
-    void WalkToNextPoint()
+    void WalkToNextPoint( bool seenPlayer)
     {
         if (!isFrozen)
         {
             // Move our position a step closer to the target.
-            float step = walkPoints[currentWalkPointIndex].Speed * Time.deltaTime; // calculate distance to move
+            float step = walkPoints[currentWalkPointIndex].Speed * Time.deltaTime * (seenPlayer ? 2 : 1); // calculate distance to move
 
             Vector3 goToPos = new Vector3(walkPoints[currentWalkPointIndex].point.transform.position.x, this.transform.position.y, walkPoints[currentWalkPointIndex].point.transform.position.z);
 
@@ -61,7 +61,7 @@ public class WalkRoutine : MonoBehaviour
             if (Vector3.Distance(transform.position, goToPos) < 0.001f)
             {
                 isFrozen = true;
-                StartCoroutine(StandTime(walkPoints[currentWalkPointIndex].StandTime, walkPoints[currentWalkPointIndex]));
+                StartCoroutine(StandTime(walkPoints[currentWalkPointIndex].StandTime, walkPoints[currentWalkPointIndex], seenPlayer));
 
                 if (pickRandomPoint == false)
                 {
@@ -103,13 +103,13 @@ public class WalkRoutine : MonoBehaviour
         }
     }
 
-    IEnumerator StandTime(float sec, WalkPoint point)
+    IEnumerator StandTime(float sec, WalkPoint point, bool seenPlayer)
     {
         yield return new WaitForSeconds(sec);
 
         if (point.Rotate)
         {
-            StartCoroutine(Rotate(walkPoints[currentWalkPointIndex]));
+            StartCoroutine(Rotate(walkPoints[currentWalkPointIndex], seenPlayer));
         }
         else
         {
@@ -118,7 +118,7 @@ public class WalkRoutine : MonoBehaviour
 
     }
 
-    IEnumerator Rotate(WalkPoint pointTo)
+    IEnumerator Rotate(WalkPoint pointTo, bool seenPlayer)
     {
         if (pointTo.RotateSpeed > 0)
         {
@@ -130,7 +130,7 @@ public class WalkRoutine : MonoBehaviour
                 Quaternion rot = Quaternion.LookRotation(dir);
 
                 // slerp to the desired rotation over time
-                transform.rotation = Quaternion.Slerp(transform.rotation, rot, walkPoints[currentWalkPointIndex].RotateSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rot, walkPoints[currentWalkPointIndex].RotateSpeed * Time.deltaTime * (seenPlayer ? 2 : 1));
 
                 if (Vector3.Angle(transform.forward, dir) < 1)
                     break;

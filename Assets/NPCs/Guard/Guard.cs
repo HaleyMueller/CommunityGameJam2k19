@@ -76,7 +76,7 @@ public class Guard : WalkRoutine
                 float maxRange = 5;
                 RaycastHit hit;
 
-                if (Vector3.Distance(transform.position, spottedObject.transform.position) < maxRange) //Within raycast range
+y                if (Vector3.Distance(transform.position, spottedObject.transform.position) < maxRange) //Within raycast range
                 {
                     if (Physics.Raycast(transform.position, (spottedObject.transform.position - transform.position), out hit, maxRange)) //If hit something
                     {

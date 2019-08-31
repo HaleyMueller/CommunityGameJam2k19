@@ -11,8 +11,6 @@ public class Inventory : MonoBehaviour
 
     public GameObject inventoryItemPrefab;
 
-    public GameObject InventoryParent;
-
     public bool PlayerHasItem(string objName, bool removeItem)
     {
         var item = objects.Where(x => x.Name == objName).FirstOrDefault();
@@ -30,14 +28,6 @@ public class Inventory : MonoBehaviour
         return false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            Debug.Log(PlayerHasItem("Default Text", true));
-        }
-    }
-
     public void RemoveObjectFromInventory(InventoryObject inventoryObject)
     {
         var trans = objects.FirstOrDefault().obj.transform.localPosition;
@@ -51,24 +41,30 @@ public class Inventory : MonoBehaviour
 
     public void AddObjectToInventory(InventoryObject inventoryObject)
     {
-        var main = GameObject.Instantiate(inventoryItemPrefab, InventoryParent.transform);
-        main.transform.Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = inventoryObject.Name;
+        var main = GameObject.Instantiate(inventoryItemPrefab);
+        //main.transform.SetParent(panefl.transform, false);
+
+        main.transform.Find("Canvas").Find("Panel").Find("Item").Find("Text").GetComponent<TMPro.TextMeshProUGUI>().text = inventoryObject.Name;
 
         if (inventoryObject.image != null)
         {
-            if (main.transform.Find("Image") != null)
-                main.transform.Find("Image").GetComponent<UnityEngine.UI.Image>().sprite = inventoryObject.image;
+            if (main.transform.Find("Canvas").Find("Panel").Find("Item").Find("Image") != null)
+                main.transform.Find("Canvas").Find("Panel").Find("Item").Find("Image").GetComponent<UnityEngine.UI.Image>().sprite = inventoryObject.image;
         }
 
-        main.GetComponent<RectTransform>().localPosition = new Vector3(main.GetComponent<RectTransform>().localPosition.x, main.GetComponent<RectTransform>().localPosition.y, main.GetComponent<RectTransform>().localPosition.z);
+        //TODO Broken below
 
-        Vector3 defaultPostition = new Vector3(main.GetComponent<RectTransform>().localPosition.x, main.GetComponent<RectTransform>().localPosition.y, main.GetComponent<RectTransform>().localPosition.z);
+        //main.GetComponent<RectTransform>().localPosition = new Vector3(main.GetComponent<RectTransform>().localPosition.x, main.GetComponent<RectTransform>().localPosition.y, main.GetComponent<RectTransform>().localPosition.z);
+
+        //Vector3 defaultPostition = new Vector3(main.GetComponent<RectTransform>().localPosition.x, main.GetComponent<RectTransform>().localPosition.y, main.GetComponent<RectTransform>().localPosition.z);
 
         inventoryObject.obj = main;
 
         objects.Add(inventoryObject);
 
-        UpdateUI(defaultPostition);
+        Debug.Log("Added " + inventoryObject.Name);
+
+        //UpdateUI(defaultPostition);
     }
 
     private void UpdateUI(Vector3 defaultPostition)
@@ -84,10 +80,12 @@ public class Inventory : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class InventoryObject
 {
     public string Name;
     public Sprite image;
 
+    [HideInInspector]
     public GameObject obj;
 }

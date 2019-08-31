@@ -20,11 +20,14 @@ public class Item : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         playerInTrigger = true;
+
+        transform.Find("Canvas").gameObject.SetActive(true);
     }
 
     void OnTriggerExit(Collider other)
     {
         playerInTrigger = false;
+        transform.Find("Canvas").gameObject.SetActive(false);
     }
 
     private void Update()
