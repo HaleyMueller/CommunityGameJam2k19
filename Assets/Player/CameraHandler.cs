@@ -35,7 +35,7 @@ public class CameraHandler : MonoBehaviour
                 cameraPanel.SetActive(true);
                 taserPanel.SetActive(false);
 
-                taser.SetActive(false);
+                taser.GetComponent<StunGun>().canTaser = false;
             }
             else
             {
@@ -44,7 +44,7 @@ public class CameraHandler : MonoBehaviour
                 cameraPanel.SetActive(false);
                 taserPanel.SetActive(true);
 
-                taser.SetActive(true);
+                taser.GetComponent<StunGun>().canTaser = true;
             }
         }
 
