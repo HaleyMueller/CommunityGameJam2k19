@@ -52,7 +52,7 @@ public class CameraHandler : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Mouse0)) //Take picture
             {
-                var bossVisible = false;
+                var bossVisible = boss.isVisible;
 
                 sfx.clip = pictureTake;
                 sfx.Play();
@@ -63,7 +63,7 @@ public class CameraHandler : MonoBehaviour
 
                 if (bossVisible) //Took picture of boss. Player now has to leave level
                 {
-
+                    ImageHolder.image = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraHandler>().GetPictureWithMonster().picture;
                 }
             }
         }

@@ -90,6 +90,13 @@ public class Guard : WalkRoutine
                             {
                                 Debug.Log("player dead");
                                 GameObject.FindGameObjectWithTag("Player").GetComponent<CameraHandler>().SavePicture(false, true); //Save current screenshot to pictures
+
+                                ImageHolder.image = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraHandler>().GetPictureWithDeath().picture;
+
+                                if (ImageHolder.image != null)
+                                {
+                                    UnityEngine.SceneManagement.SceneManager.LoadScene("Death");
+                                }
                             }
                         }
                         else

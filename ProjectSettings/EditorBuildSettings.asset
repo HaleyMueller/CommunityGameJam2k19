@@ -11,10 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Introduction.unity
     guid: 9135780be2977ad439af57d70bd47a7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Levels/Level01/Level01.unity
     guid: b63106dccb9ef5742bfa2663e281af25
   - enabled: 0
     path: Assets/Scenes/NPC Screen.unity
     guid: b2d02d7a722df5d42962ce0a3329e859
+  - enabled: 1
+    path: Assets/Scenes/Death.unity
+    guid: 7971981fdea2e5e418d028d4bc5cb47a
+  - enabled: 1
+    path: Assets/Scenes/Won.unity
+    guid: 74b731d9b9104374a82aea507fd32fdd
   m_configObjects: {}
