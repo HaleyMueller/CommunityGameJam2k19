@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 59637343}
   - component: {fileID: 59637346}
-  - component: {fileID: 59637345}
   - component: {fileID: 59637344}
   m_Layer: 0
   m_Name: StunnerCamera
@@ -76,14 +75,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &59637345
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 59637342}
-  m_Enabled: 1
 --- !u!114 &59637344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +201,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279295315}
   m_LocalRotation: {x: -0.013089582, y: -0, z: -0, w: 0.99991435}
-  m_LocalPosition: {x: 0.29999924, y: -0.33819914, z: 1.2192708}
+  m_LocalPosition: {x: 0.241, y: -0.313, z: 1.218}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6080189834598423220}
@@ -226,10 +217,10 @@ Light:
   m_Enabled: 0
   serializedVersion: 9
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 724.07733
-  m_Range: 22
-  m_SpotAngle: 53.3
+  m_Color: {r: 1, g: 0.94920176, b: 0.8349056, a: 1}
+  m_Intensity: 362.03867
+  m_Range: 17.5
+  m_SpotAngle: 47.8
   m_InnerSpotAngle: 5
   m_CookieSize: 10
   m_Shadows:
@@ -295,9 +286,9 @@ MonoBehaviour:
   areaIntensity: 200
   enableSpotReflector: 0
   luxAtDistance: 1
-  m_InnerSpotPercent: 100
+  m_InnerSpotPercent: 71.1
   lightDimmer: 1
-  m_VolumetricDimmer: 1
+  m_VolumetricDimmer: 0.061
   lightUnit: 4
   fadeDistance: 10000
   affectDiffuse: 1
@@ -315,7 +306,7 @@ MonoBehaviour:
   useVolumetric: 0
   featuresFoldout: 1
   showAdditionalSettings: 0
-  displayLightIntensity: 12.5
+  displayLightIntensity: 11.5
   displayAreaLightEmissiveMesh: 0
   areaLightCookie: {fileID: 0}
   areaLightShadowCone: 120
@@ -824,7 +815,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.03
-  far clip plane: 1000
+  far clip plane: 250
   field of view: 45
   orthographic: 0
   orthographic size: 5
@@ -870,7 +861,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 3
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -962,7 +953,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 112847675505b704fb5a88c2d2a64751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sesitivity: 2
+  sesitivity: 1
   smoothing: 2
 --- !u!1 &6080189835704990584
 GameObject:
@@ -1587,6 +1578,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4719632619936054742, guid: 41805ccfc3f31694a91c8f2dd070a59a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 089ae3c314f2d6f4b998cf16ffcb1adb, type: 2}
+    - target: {fileID: 4719632619936054742, guid: 41805ccfc3f31694a91c8f2dd070a59a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 59b7876b4b91947409720ff796321425, type: 2}
+    - target: {fileID: 4719632619936054742, guid: 41805ccfc3f31694a91c8f2dd070a59a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 573c20852e600024293aa8f379daa437, type: 2}
     - target: {fileID: 7506137854735468698, guid: 41805ccfc3f31694a91c8f2dd070a59a,
         type: 3}
       propertyPath: flashlight
@@ -1604,9 +1610,9 @@ PrefabInstance:
       objectReference: {fileID: 8057216319702526812}
     - target: {fileID: 7506137854735468698, guid: 41805ccfc3f31694a91c8f2dd070a59a,
         type: 3}
-      propertyPath: flashLightOff
+      propertyPath: nonLoopingSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 8c8c0edc1ce474c4986e1d4d35a8ce8e, type: 3}
+      objectReference: {fileID: 5638223735204477460}
     - target: {fileID: 7506137854735468698, guid: 41805ccfc3f31694a91c8f2dd070a59a,
         type: 3}
       propertyPath: flashLightOn
@@ -1614,9 +1620,9 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 571c4cd52e3a0944095ca865a03dbeab, type: 3}
     - target: {fileID: 7506137854735468698, guid: 41805ccfc3f31694a91c8f2dd070a59a,
         type: 3}
-      propertyPath: nonLoopingSFX
+      propertyPath: flashLightOff
       value: 
-      objectReference: {fileID: 5638223735204477460}
+      objectReference: {fileID: 8300000, guid: 8c8c0edc1ce474c4986e1d4d35a8ce8e, type: 3}
     - target: {fileID: 3054209956974586571, guid: 41805ccfc3f31694a91c8f2dd070a59a,
         type: 3}
       propertyPath: m_Layer
