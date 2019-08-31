@@ -15,25 +15,49 @@ public class CameraHandler : MonoBehaviour
 
     public Camera c;
 
+    public GameObject cameraPanel;
+    public GameObject taserPanel;
+
+    public GameObject taser;
+
+    public AudioSource sfx;
+    public AudioClip pictureTake;
+
+    public Light cameraFlash;
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) //Toggles show camera UI
+        if (Input.GetKeyDown(KeyCode.Mouse1)) //Toggles show camera UI
         {
             if (!isInCameraMode)
             {
                 ShowLayer();
+                cameraPanel.SetActive(true);
+                taserPanel.SetActive(false);
+
+                taser.GetComponent<StunGun>().canTaser = false;
             }
             else
             {
                 HideLayer();
+
+                cameraPanel.SetActive(false);
+                taserPanel.SetActive(true);
+
+                taser.GetComponent<StunGun>().canTaser = true;
             }
         }
 
         if (isInCameraMode)
         {
-            if (Input.GetKeyDown(KeyCode.T)) //Take picture
+            if (Input.GetKeyDown(KeyCode.Mouse0)) //Take picture
             {
-                var bossVisible = boss.isVisible;
+                var bossVisible = false;
+
+                sfx.clip = pictureTake;
+                sfx.Play();
+
+                StartCoroutine(FlashCamera());
 
                 SavePicture(bossVisible, false); //NOTE: if you can see the boss in the editor window the value will be set to true
 
@@ -43,6 +67,16 @@ public class CameraHandler : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator FlashCamera()
+    {
+        cameraFlash.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(.1f);
+
+        //cameraFlash.enabled = false;
+        cameraFlash.gameObject.SetActive(false);
     }
 
     private void ShowLayer()
