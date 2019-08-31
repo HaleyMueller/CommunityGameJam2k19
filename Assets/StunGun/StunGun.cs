@@ -41,7 +41,6 @@ public class StunGun : MonoBehaviour
                 flashlight.gameObject.SetActive(true);
             }
         }
-
     }
 
     void StunGuard()

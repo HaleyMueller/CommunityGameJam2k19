@@ -21,18 +21,18 @@ public class TPCC : MonoBehaviour
         smoothV.y = Mathf.Lerp(smoothV.y, md.y, 1f / smoothing);
         mouseLook += smoothV;
 
-        if (-mouseLook.y <= 70 && -mouseLook.y >= -100)
+        if (-mouseLook.y <= 60 && -mouseLook.y >= -80)
         {
             transform.localRotation = Quaternion.AngleAxis(-mouseLook.y, Vector3.right);
 
         }
-        else if (-mouseLook.y >= 70)
+        else if (-mouseLook.y >= 60)
         {
-            mouseLook.y = -70;
+            mouseLook.y = -60;
         }
-        else if (-mouseLook.y <= -100)
+        else if (-mouseLook.y <= -80)
         {
-            mouseLook.y = 100;
+            mouseLook.y = 80;
         }
 
 
