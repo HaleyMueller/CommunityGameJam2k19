@@ -15,17 +15,31 @@ public class CameraHandler : MonoBehaviour
 
     public Camera c;
 
+    public GameObject cameraPanel;
+    public GameObject taserPanel;
+
+    public GameObject taser;
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) //Toggles show camera UI
+        if (Input.GetKeyDown(KeyCode.Mouse1)) //Toggles show camera UI
         {
             if (!isInCameraMode)
             {
                 ShowLayer();
+                cameraPanel.SetActive(true);
+                taserPanel.SetActive(false);
+
+                taser.SetActive(false);
             }
             else
             {
                 HideLayer();
+
+                cameraPanel.SetActive(false);
+                taserPanel.SetActive(true);
+
+                taser.SetActive(true);
             }
         }
 
