@@ -45,8 +45,41 @@ public class Guard : WalkRoutine
     public List<AudioClip> foundClips;
     public List<AudioClip> deadClips;
 
+    Animator animator;
+    public bool isWalking = false, isIdle = false;
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     void Update()
     {
+
+        if (isFrozen && !isIdle)
+        {
+            isWalking = false;
+            isIdle = true;
+            animator.SetBool("isStunned", false);
+            animator.SetBool("isIdle", true);
+            animator.SetBool("isWalking", false);
+        }
+        else if (!isFrozen && !isWalking && doSpottedObject)
+        {
+            isWalking = false;
+            isIdle = true;
+            animator.SetBool("isStunned", false);
+            animator.SetBool("isIdle", true);
+            animator.SetBool("isWalking", false);
+        }
+        else if (!isFrozen && !isWalking && !doSpottedObject)
+        {
+            isIdle = false;
+            isWalking = true;
+            animator.SetBool("isStunned", false);
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isWalking", true);
+        }
+
         if (currentlyLookingAtPlayer && spottedObject == null && playerLeftView == false && isDead == false) //Player left view before timer ended
         {
             playerLeftView = true;
@@ -90,13 +123,6 @@ public class Guard : WalkRoutine
                             {
                                 Debug.Log("player dead");
                                 GameObject.FindGameObjectWithTag("Player").GetComponent<CameraHandler>().SavePicture(false, true); //Save current screenshot to pictures
-
-                                ImageHolder.image = GameObject.FindGameObjectWithTag("Player").GetComponent<CameraHandler>().GetPictureWithDeath().picture;
-
-                                if (ImageHolder.image != null)
-                                {
-                                    UnityEngine.SceneManagement.SceneManager.LoadScene("Death");
-                                }
                             }
                         }
                         else
@@ -131,6 +157,12 @@ public class Guard : WalkRoutine
         if (isDead == false)
         {
             isDead = true;
+
+            animator.SetBool("isStunned", true);
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isWalking", false);
+            GetComponent<Guard>().enabled = false;
+
             this.GetComponent<Animator>().enabled = true;
             this.GetComponent<Guard>().enabled = false;
 
