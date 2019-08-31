@@ -24,8 +24,42 @@ public class Guard : WalkRoutine
 
     bool rayCastWorked = false;
 
+
+    Animator animator;
+    public bool isWalking = false, isIdle = false;
+    private void Start()
+    {
+        animator = GetComponent<Animator>();
+    }
+
+    
     void Update()
     {
+        if (isFrozen && !isIdle)
+        {
+            isWalking = false;
+            isIdle = true;
+            animator.SetBool("isStunned", false);
+            animator.SetBool("isIdle", true);
+            animator.SetBool("isWalking", false);
+        }
+        else if (!isFrozen && !isWalking && doSpottedObject)
+        {
+            isWalking = false;
+            isIdle = true;
+            animator.SetBool("isStunned", false);
+            animator.SetBool("isIdle", true);
+            animator.SetBool("isWalking", false);
+        }
+        else if (!isFrozen && !isWalking && !doSpottedObject)
+        {
+            isIdle = false;
+            isWalking = true;
+            animator.SetBool("isStunned", false);
+            animator.SetBool("isIdle", false);
+            animator.SetBool("isWalking", true);
+        }
+
         if (currentlyLookingAtPlayer && spottedObject == null && playerLeftView == false) //Player left view before timer ended
         {
             playerLeftView = true;
@@ -74,11 +108,13 @@ public class Guard : WalkRoutine
             PatrolLogic();
         }
     }
-
+    
     public void GetStunned()
     {
-        this.GetComponent<Animator>().enabled = true;
-        this.GetComponent<Guard>().enabled = false;
+        animator.SetBool("isStunned", true);
+        animator.SetBool("isIdle", false);
+        animator.SetBool("isWalking", false);
+        GetComponent<Guard>().enabled = false;
     }
 
     #region PlayerLookAt

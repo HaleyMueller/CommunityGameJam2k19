@@ -26,8 +26,7 @@ public class WalkRoutine : MonoBehaviour
     /// <summary>
     /// Used by Rotation and Stand time to prevent moving for a period of time
     /// </summary>
-    private bool isFrozen = false;
-
+    public bool isFrozen = false;
 
 
     internal void PatrolLogic()
@@ -56,6 +55,7 @@ public class WalkRoutine : MonoBehaviour
 
             transform.LookAt(goToPos, Vector3.up);
             transform.position = Vector3.MoveTowards(transform.position, goToPos, step);
+
 
             //At Point
             if (Vector3.Distance(transform.position, goToPos) < 0.001f)
