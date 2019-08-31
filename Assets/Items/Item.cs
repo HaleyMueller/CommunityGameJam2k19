@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("Player");
         GetComponentInChildren<SpriteRenderer>().sprite = WorldSprite;
     }
 

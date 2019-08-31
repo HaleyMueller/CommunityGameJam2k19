@@ -15,6 +15,8 @@ public class Inventory : MonoBehaviour
     {
         var item = objects.Where(x => x.Name == objName).FirstOrDefault();
 
+        Debug.Log(objects.Count());
+
         if (item != null)
         {
             if (removeItem)

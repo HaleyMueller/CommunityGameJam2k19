@@ -80,6 +80,8 @@ public class StunGun : MonoBehaviour
     {
         RaycastHit hit;
 
+        Debug.Log("stun");
+
         if (Physics.Raycast(playercam.transform.position, playercam.transform.forward, out hit, range))
         {
             Guard theGuard = hit.transform.GetComponentInParent<Guard>();

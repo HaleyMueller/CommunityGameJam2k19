@@ -303,6 +303,8 @@
 /define:CSHARP_7_3_OR_NEWER
 Assets\AlwaysLookAtCamera.cs
 Assets\BossDoors.cs
+Assets\EndOfGame.cs
+Assets\ggg.cs
 Assets\Items\Item.cs
 Assets\KeyCard.cs
 "Assets\Materials\mainMenu assest\menuHandler.cs"
@@ -317,6 +319,5 @@ Assets\Player\PMC.cs
 Assets\Player\TPCC.cs
 Assets\Scenes\ImageHolder.cs
 Assets\Scenes\Lost.cs
-Assets\Scenes\Won.cs
 Assets\StunGun\StunGun.cs
 Assets\TextTyper.cs

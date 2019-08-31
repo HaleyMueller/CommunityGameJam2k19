@@ -15,10 +15,5 @@ public class BossDoors : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.CompareTag("Player"))
-		{
-			doors.SetActive(true);
-			Destroy(gameObject);
-		}
 	}
 }

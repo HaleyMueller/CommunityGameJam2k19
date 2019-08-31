@@ -9,7 +9,7 @@ public class WalkRoutine : MonoBehaviour
 
     internal int currentWalkPointIndex = 0;
 
-    private bool doPatrol = true;
+    public bool doPatrol = true;
 
     /// <summary>
     /// Walk speed
