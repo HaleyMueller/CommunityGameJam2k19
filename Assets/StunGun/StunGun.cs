@@ -6,12 +6,20 @@ public class StunGun : MonoBehaviour
     public GameObject flashlight;
     public Camera playercam;
 
+    public AudioSource sfx;
+
     //can be hardcoded but put for fine tuning
     public int range = 1;
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            sfx.Play();
+        }
+
+
+        if (Input.GetKey(KeyCode.Mouse0))
         {
             lightning.gameObject.SetActive(true);
 
@@ -20,6 +28,7 @@ public class StunGun : MonoBehaviour
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             lightning.gameObject.SetActive(false);
+            sfx.Stop();
         }
         if (Input.GetKeyDown(KeyCode.F))
         {

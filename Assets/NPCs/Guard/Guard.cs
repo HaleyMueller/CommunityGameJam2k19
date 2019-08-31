@@ -14,13 +14,21 @@ public class Guard : WalkRoutine
     /// </summary>
     public float noticeTimer = 4f;
 
+    public float killRange = 3f;
+
     [HideInInspector]
     public bool doSpottedObject = false;
 
     [HideInInspector]
     public GameObject spottedObject = null;
 
+    [HideInInspector]
+    public bool seenPlayer = false;
+
+    public AudioSource taserSFX;
+
     public GameObject exclamation;
+    public GameObject particleTaser;
 
     bool rayCastWorked = false;
 
@@ -59,6 +67,12 @@ public class Guard : WalkRoutine
                                 lookAtPlayer = NoticeTimer(); //Look at player and start timer
                                 StartCoroutine(lookAtPlayer);
                             }
+
+                            if (Vector3.Distance(this.transform.position, spottedObject.transform.position) <= killRange && playerDeathBool == true)
+                            {
+                                Debug.Log("player dead");
+                                GameObject.FindGameObjectWithTag("Player").GetComponent<CameraHandler>().SavePicture(false, true); //Save current screenshot to pictures
+                            }
                         }
                         else
                         {
@@ -71,7 +85,12 @@ public class Guard : WalkRoutine
         }
         else
         {
-            PatrolLogic();
+            PatrolLogic(seenPlayer);
+            particleTaser.SetActive(false);
+
+            taserSFX.Stop();
+
+            playerDeathBool = false;
         }
     }
 
@@ -79,6 +98,9 @@ public class Guard : WalkRoutine
     {
         this.GetComponent<Animator>().enabled = true;
         this.GetComponent<Guard>().enabled = false;
+
+        taserSFX.Stop();
+        particleTaser.SetActive(false);
     }
 
     #region PlayerLookAt
@@ -86,9 +108,10 @@ public class Guard : WalkRoutine
     private bool currentlyLookingAtPlayer = false;
     private bool playerLeftView = false;
 
+    private bool playerDeathBool = false;
+
     IEnumerator NoticeTimer()
     {
-        Debug.Log("starting timer");
         currentlyLookingAtPlayer = true;
         yield return new WaitForSeconds(noticeTimer);
         if (spottedObject != null)
@@ -96,11 +119,20 @@ public class Guard : WalkRoutine
             Debug.Log("Successfully found player");
             exclamation.GetComponent<SpriteRenderer>().enabled = true;
             exclamation.GetComponent<AlwaysLookAtCamera>().enabled = true;
+
+            seenPlayer = true;
+
+            playerDeathBool = true;
+
+            taserSFX.Play();
+            particleTaser.SetActive(true);
         }
         else
         {
             Debug.Log("It must have been the wind");
+            particleTaser.SetActive(false);
         }
+
         currentlyLookingAtPlayer = false;
     }
 
